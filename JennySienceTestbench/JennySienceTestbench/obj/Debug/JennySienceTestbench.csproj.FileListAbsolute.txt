@@ -1,0 +1,10 @@
+C:\Users\ck\source\repos\ex3_Testbench_JennySience\JennySienceTestbench\JennySienceTestbench\bin\Debug\JennySienceTestbench.exe.config
+C:\Users\ck\source\repos\ex3_Testbench_JennySience\JennySienceTestbench\JennySienceTestbench\bin\Debug\JennySienceTestbench.exe
+C:\Users\ck\source\repos\ex3_Testbench_JennySience\JennySienceTestbench\JennySienceTestbench\bin\Debug\JennySienceTestbench.pdb
+C:\Users\ck\source\repos\ex3_Testbench_JennySience\JennySienceTestbench\JennySienceTestbench\obj\Debug\JennySienceTestbench.csprojAssemblyReference.cache
+C:\Users\ck\source\repos\ex3_Testbench_JennySience\JennySienceTestbench\JennySienceTestbench\obj\Debug\JennySienceTestbench.Form1.resources
+C:\Users\ck\source\repos\ex3_Testbench_JennySience\JennySienceTestbench\JennySienceTestbench\obj\Debug\JennySienceTestbench.Properties.Resources.resources
+C:\Users\ck\source\repos\ex3_Testbench_JennySience\JennySienceTestbench\JennySienceTestbench\obj\Debug\JennySienceTestbench.csproj.GenerateResource.cache
+C:\Users\ck\source\repos\ex3_Testbench_JennySience\JennySienceTestbench\JennySienceTestbench\obj\Debug\JennySienceTestbench.csproj.CoreCompileInputs.cache
+C:\Users\ck\source\repos\ex3_Testbench_JennySience\JennySienceTestbench\JennySienceTestbench\obj\Debug\JennySienceTestbench.exe
+C:\Users\ck\source\repos\ex3_Testbench_JennySience\JennySienceTestbench\JennySienceTestbench\obj\Debug\JennySienceTestbench.pdb
