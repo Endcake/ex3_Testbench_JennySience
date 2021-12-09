@@ -22,20 +22,19 @@ namespace JennySienceTestbench
         public Form1()
         {
             InitializeComponent();
+            btn_disconnect.Enabled = false;
+            btn_send_message.Enabled = false;
         }
 
         private void btn_connect_Click(object sender, EventArgs e)
         {
             try
             {
-                client= new TcpClient("127.0.0.1", 1302);
-                
-                
-                
-
+                client= new TcpClient("127.0.0.1", 1302);  
                 stream = client.GetStream();
-
-
+                btn_connect.Enabled = false;
+                btn_disconnect.Enabled = true;
+                btn_send_message.Enabled =true;
             }
             catch
             {
@@ -52,6 +51,9 @@ namespace JennySienceTestbench
 
         private void btn_disconnect_Click(object sender, EventArgs e)
         {
+            btn_connect.Enabled = true;
+            btn_disconnect.Enabled = false;
+            btn_send_message.Enabled = false;
             client.Close();
         }
 
@@ -63,11 +65,11 @@ namespace JennySienceTestbench
             sendData = Encoding.ASCII.GetBytes(messageToSend);
 
             stream.Write(sendData, 0, sendData.Length);
-            txtBox_communication.Text = "sending data...\n";
+            
 
             StreamReader sr = new StreamReader(stream);
-            string response = sr.ReadLine();
-            txtBox_communication.Text = response;
+           // string response = sr.ReadLine();
+            //txtBox_communication.Text = response;
         }
     }
 }
