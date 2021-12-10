@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Net.Sockets;
 using System.Text;
@@ -32,7 +33,7 @@ namespace JennySienceTestbench
         
 
         // Data: text to be send to server(axis controller)
-        private string data;
+        private string data="nill";
 
         public string Data
         {
@@ -85,5 +86,59 @@ namespace JennySienceTestbench
             }
             
         }
+
+        public bool killConnection()
+        {
+            try
+            {
+                client.Close();
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
+        }
+
+        public bool sendDataTiming()
+        {
+            var task = Task.Run(() =>
+            {
+
+                return sendData();
+            });
+
+            bool isCompletedSuccessfully = task.Wait(TimeSpan.FromMilliseconds(3000));
+
+            if (isCompletedSuccessfully)
+            {
+                return task.Result;
+            }
+            else
+            {
+                throw new TimeoutException("The function has taken longer than the maximum time allowed.");
+            }
+
+        }
+        private bool sendData()
+        {
+            try 
+            {
+                int byteCount = Encoding.ASCII.GetByteCount(data + 1);
+                byte[] sendData = new byte[byteCount];
+                sendData = Encoding.ASCII.GetBytes(data);
+                stream.Write(sendData, 0, sendData.Length);
+                StreamReader sr = new StreamReader(stream);
+                string response = sr.ReadLine();
+                sr.Close();                
+                return true;
+            }
+
+            catch
+            {
+                return false;
+            }
+        }
+
     }
 }

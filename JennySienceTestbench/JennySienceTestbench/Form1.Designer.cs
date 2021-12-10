@@ -123,6 +123,7 @@
             this.btn_send2.TabIndex = 13;
             this.btn_send2.Text = "send";
             this.btn_send2.UseVisualStyleBackColor = true;
+            this.btn_send2.Click += new System.EventHandler(this.btn_send2_Click);
             // 
             // txtBx_command2
             // 

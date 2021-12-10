@@ -20,6 +20,7 @@ namespace JennySienceTestbench
 
         NetworkStream stream1;
         NetworkStream stream2;
+        axis_jenny j1 = new axis_jenny();
         public Form1()
         {
             InitializeComponent();
@@ -80,11 +81,12 @@ namespace JennySienceTestbench
         {
             try
             {
-                client = new TcpClient(txtBx_ip2.Text, Convert.ToInt32(txtBx_port2.Text));
-                stream2 = client.GetStream();
-                btn_connect.Enabled = false;
-                btn_disconnect.Enabled = true;
-                btn_send_message.Enabled = true;
+                if (!j1.Connection)
+                {
+                    j1.IP = "127.0.0.1";
+                    j1.Port = 1302;
+                    j1.connect2Controller();
+                }
             }
             catch
             {
@@ -94,11 +96,20 @@ namespace JennySienceTestbench
 
         private void btn_disconnect2_Click(object sender, EventArgs e)
         {
-            btn_connect2.Enabled = true;
-            btn_disconnect2.Enabled = false;
-            btn_send2.Enabled = false;
-            
-            client.Close();
+            j1.killConnection();
+        }
+
+        private void btn_send2_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                j1.Data = txtBx_command2.Text;
+                j1.sendDataTiming();
+                txtBox_communication.Text = "Timing OK";
+            }
+            catch { txtBox_communication.Text = "Timing NOT OK"; }
+         
+
         }
     }
 }
