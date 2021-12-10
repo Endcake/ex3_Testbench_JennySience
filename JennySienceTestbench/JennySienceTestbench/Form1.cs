@@ -18,7 +18,8 @@ namespace JennySienceTestbench
         
         
 
-        NetworkStream stream;
+        NetworkStream stream1;
+        NetworkStream stream2;
         public Form1()
         {
             InitializeComponent();
@@ -30,8 +31,9 @@ namespace JennySienceTestbench
         {
             try
             {
-                client= new TcpClient("127.0.0.1", 1302);  
-                stream = client.GetStream();
+               client= new TcpClient(txtBx_ip1.Text, Convert.ToInt32(txtBx_port1.Text));
+                //client = new TcpClient("127.0.0.1", 1302);
+                stream1 = client.GetStream();
                 btn_connect.Enabled = false;
                 btn_disconnect.Enabled = true;
                 btn_send_message.Enabled =true;
@@ -64,12 +66,39 @@ namespace JennySienceTestbench
             byte[] sendData = new byte[byteCount];
             sendData = Encoding.ASCII.GetBytes(messageToSend);
 
-            stream.Write(sendData, 0, sendData.Length);
+            stream1.Write(sendData, 0, sendData.Length);
             
 
-            StreamReader sr = new StreamReader(stream);
+            StreamReader sr = new StreamReader(stream1);
            // string response = sr.ReadLine();
             //txtBox_communication.Text = response;
+        }
+        //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+        // zweiter Port
+        //+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+        private void btn_connect2_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                client = new TcpClient(txtBx_ip2.Text, Convert.ToInt32(txtBx_port2.Text));
+                stream2 = client.GetStream();
+                btn_connect.Enabled = false;
+                btn_disconnect.Enabled = true;
+                btn_send_message.Enabled = true;
+            }
+            catch
+            {
+                MessageBox.Show("keine Verbindung zum Server");
+            }
+        }
+
+        private void btn_disconnect2_Click(object sender, EventArgs e)
+        {
+            btn_connect2.Enabled = true;
+            btn_disconnect2.Enabled = false;
+            btn_send2.Enabled = false;
+            
+            client.Close();
         }
     }
 }
