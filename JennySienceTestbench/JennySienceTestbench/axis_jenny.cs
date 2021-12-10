@@ -41,6 +41,15 @@ namespace JennySienceTestbench
             set => data = value;
         }
 
+        // Data: text to be send to server(axis controller)
+        private string echo = "null";
+
+        public string Echo
+        {
+            get => echo;
+            set => echo = value;
+        }
+        
         //Connection: false-> not connected to server
         private bool connection=false;
 
@@ -129,12 +138,24 @@ namespace JennySienceTestbench
                 sendData = Encoding.ASCII.GetBytes(data);
                 stream.Write(sendData, 0, sendData.Length);
                 StreamReader sr = new StreamReader(stream);
-                string response = sr.ReadLine();
-                sr.Close();                
+                echo = sr.ReadLine();
+                           
                 return true;
             }
 
             catch
+            {
+                return false;
+            }
+        }
+
+        public bool checkEcho(string test)
+        {
+            if (echo == test)
+            {
+                return true;
+            }
+            else
             {
                 return false;
             }

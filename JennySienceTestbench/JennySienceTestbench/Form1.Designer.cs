@@ -42,6 +42,7 @@
             this.btn_connect2 = new System.Windows.Forms.Button();
             this.txtBx_ip2 = new System.Windows.Forms.TextBox();
             this.txtBx_port2 = new System.Windows.Forms.TextBox();
+            this.btn_get_postion = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // txtBx_port1
@@ -168,11 +169,22 @@
             this.txtBx_port2.TabIndex = 8;
             this.txtBx_port2.Text = "1303";
             // 
+            // btn_get_postion
+            // 
+            this.btn_get_postion.Location = new System.Drawing.Point(494, 141);
+            this.btn_get_postion.Name = "btn_get_postion";
+            this.btn_get_postion.Size = new System.Drawing.Size(119, 23);
+            this.btn_get_postion.TabIndex = 14;
+            this.btn_get_postion.Text = "position?";
+            this.btn_get_postion.UseVisualStyleBackColor = true;
+            this.btn_get_postion.Click += new System.EventHandler(this.btn_get_postion_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.btn_get_postion);
             this.Controls.Add(this.btn_send2);
             this.Controls.Add(this.txtBx_command2);
             this.Controls.Add(this.btn_disconnect2);
@@ -210,6 +222,7 @@
         private System.Windows.Forms.Button btn_connect2;
         private System.Windows.Forms.TextBox txtBx_ip2;
         private System.Windows.Forms.TextBox txtBx_port2;
+        private System.Windows.Forms.Button btn_get_postion;
     }
 }
 

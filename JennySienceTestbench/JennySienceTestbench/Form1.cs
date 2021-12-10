@@ -47,7 +47,7 @@ namespace JennySienceTestbench
 
         private void btn_exit_Click(object sender, EventArgs e)
         {
-            try { client.Close(); }
+            try { j1.killConnection(); }
             catch { }
             Application.Exit();
         }
@@ -108,8 +108,23 @@ namespace JennySienceTestbench
                 txtBox_communication.Text = "Timing OK";
             }
             catch { txtBox_communication.Text = "Timing NOT OK"; }
-         
 
+            txtBox_communication.Text = j1.Echo;
+        }
+
+        private void btn_get_postion_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                j1.Data ="TP";
+                j1.sendDataTiming();
+
+                txtBox_communication.Text = j1.Echo;
+            }
+            catch
+            {
+                txtBox_communication.AppendText("error  ");
+            }
         }
     }
 }
