@@ -83,8 +83,9 @@ namespace JennySienceTestbench
             {
                 if (!j1.Connection)
                 {
-                    j1.IP = "127.0.0.1";
-                    j1.Port = 1302;
+                    j1.IP = txtBx_ip2.Text;
+
+                    j1.Port = Int32.Parse(txtBx_port2.Text);
                     j1.connect2Controller();
                 }
             }
