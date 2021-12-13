@@ -108,7 +108,9 @@ namespace JennySienceTestbench
                 j1.sendDataTiming();
                 txtBox_communication.Text = "Timing OK";
             }
-            catch { txtBox_communication.Text = "Timing NOT OK"; }
+            catch { txtBox_communication.Text = "Timing NOT OK";
+                MessageBox.Show("error");
+            }
 
             txtBox_communication.Text = j1.Echo;
         }

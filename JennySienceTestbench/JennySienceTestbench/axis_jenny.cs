@@ -133,6 +133,7 @@ namespace JennySienceTestbench
         {
             try 
             {
+                data = data + "\r\n";
                 int byteCount = Encoding.ASCII.GetByteCount(data + 1);
                 byte[] sendData = new byte[byteCount];
                 sendData = Encoding.ASCII.GetBytes(data);
