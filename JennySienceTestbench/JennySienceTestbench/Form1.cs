@@ -9,35 +9,34 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Net.Sockets;
 using System.IO;
+using ps90func;
 
 namespace JennySienceTestbench
 {
     public partial class Form1 : Form
     {
+        CPS90Win PS90;
+        
         TcpClient client;
         
         
 
-        NetworkStream stream1;
-        NetworkStream stream2;
+        NetworkStream stream_Jenny_X;
+        NetworkStream stream_Jenny_Y;
         axis_jenny j1 = new axis_jenny();
         public Form1()
         {
             InitializeComponent();
-            btn_disconnect.Enabled = false;
-            btn_send_message.Enabled = false;
+
         }
 
-        private void btn_connect_Click(object sender, EventArgs e)
+        private void btn_connect_jenny_X_Click(object sender, EventArgs e)
         {
             try
             {
                client= new TcpClient(txtBx_ip1.Text, Convert.ToInt32(txtBx_port1.Text));
                 //client = new TcpClient("127.0.0.1", 1302);
-                stream1 = client.GetStream();
-                btn_connect.Enabled = false;
-                btn_disconnect.Enabled = true;
-                btn_send_message.Enabled =true;
+                stream_Jenny_X = client.GetStream();
             }
             catch
             {
@@ -52,9 +51,9 @@ namespace JennySienceTestbench
             Application.Exit();
         }
 
-        private void btn_disconnect_Click(object sender, EventArgs e)
+        private void btn_disconnect_jenny_X_Click(object sender, EventArgs e)
         {
-            btn_connect.Enabled = true;
+            btn_connect_jenny_X.Enabled = true;
             btn_disconnect.Enabled = false;
             btn_send_message.Enabled = false;
             client.Close();
@@ -67,17 +66,17 @@ namespace JennySienceTestbench
             byte[] sendData = new byte[byteCount];
             sendData = Encoding.ASCII.GetBytes(messageToSend);
 
-            stream1.Write(sendData, 0, sendData.Length);
+            stream_Jenny_X.Write(sendData, 0, sendData.Length);
             
 
-            StreamReader sr = new StreamReader(stream1);
+            StreamReader sr = new StreamReader(stream_Jenny_X);
            // string response = sr.ReadLine();
             //txtBox_communication.Text = response;
         }
         //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
         // zweiter Port
         //+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-        private void btn_connect2_Click(object sender, EventArgs e)
+        private void btn_connect_jenny_Y_Click(object sender, EventArgs e)
         {
             try
             {
@@ -95,7 +94,7 @@ namespace JennySienceTestbench
             }
         }
 
-        private void btn_disconnect2_Click(object sender, EventArgs e)
+        private void btn_disconnectjenny_Y_Click(object sender, EventArgs e)
         {
             j1.killConnection();
         }
@@ -128,6 +127,12 @@ namespace JennySienceTestbench
             {
                 txtBox_communication.AppendText("error  ");
             }
+        }
+
+        private void btn_connect_ps90_Click(object sender, EventArgs e)
+        {
+            PS90 = new CPS90Win();
+            
         }
     }
 }
