@@ -79,6 +79,15 @@ namespace JennySienceTestbench
             set => stream = value;
         }
 
+        // Parameter response from axis
+        private String parameter;
+
+        public String Parameter
+        {
+            get => parameter;
+            set => parameter = value;
+        }
+
 
         // methodes
         public bool connect2Controller()
@@ -160,6 +169,28 @@ namespace JennySienceTestbench
             {
                 return false;
             }
+        }
+
+        public String getParameter()
+        {
+            try
+            {
+                StreamReader sr = new StreamReader(stream);
+                parameter = sr.ReadLine();
+
+                if (parameter == "?")
+                {
+                    return "Error";
+                }
+                else
+                {
+                    return "OK";
+                }
+            }
+            catch { 
+            
+            }
+            return "Error";
         }
 
     }
